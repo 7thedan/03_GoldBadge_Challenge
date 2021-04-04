@@ -1,0 +1,16 @@
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_UnitTest\obj\Debug\Badge_UnitTest.csprojAssemblyReference.cache
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_UnitTest\obj\Debug\Badge_UnitTest.csproj.CoreCompileInputs.cache
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_UnitTest\bin\Debug\Badge_UnitTest.dll
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_UnitTest\bin\Debug\Badge_UnitTest.pdb
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_UnitTest\bin\Debug\Badge_Repository.dll
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_UnitTest\bin\Debug\Badge_Repository.pdb
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_UnitTest\obj\Debug\Badge_UnitTest.csproj.CopyComplete
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_UnitTest\obj\Debug\Badge_UnitTest.dll
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_UnitTest\obj\Debug\Badge_UnitTest.pdb

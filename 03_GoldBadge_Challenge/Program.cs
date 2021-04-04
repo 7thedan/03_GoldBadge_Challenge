@@ -13,7 +13,7 @@ namespace _03_GoldBadge_Challenge
         {
 
             ProgramUI program = new ProgramUI();
-            program.Run();
+            program.RunBadge();
 
         }
     }

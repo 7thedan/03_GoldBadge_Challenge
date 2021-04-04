@@ -10,11 +10,17 @@ namespace _03_GoldBadge_Challenge
 {
     class ProgramUI
     {
+        private bool _badgeListSeeded;
         private BadgeRepository _badgeRepo = new BadgeRepository();
 
+        public void RunBadge()
+        {
+            SeedBadgeList();
+            BadgeMenu();
+        }
 
         //Menu
-        private void Menu()
+        public void BadgeMenu()
         {
             bool keepRunning = true;
             while (keepRunning)
@@ -33,13 +39,14 @@ namespace _03_GoldBadge_Challenge
                 switch (input)
                 {
                     case "1":
-                        //Add a badge.
+                        AddBadge();
                         break;
                     case "2":
-                        //Edit a badge.
+                        UpdateTheBadge();
                         break;
                     case "3":
-                        //List all Badges/
+                        
+                        DisplayAllBadge();
                         break;
                     case "4":
                         keepRunning = false;
@@ -54,113 +61,182 @@ namespace _03_GoldBadge_Challenge
                 Console.ReadKey();
             }
         }
-
-        private void AddNewBadge()
+        private void AddBadge()
         {
-            Badge newBadge = new Badge();
+
+            Badge newBadge = new Badge
+            {
+                DoorAccess = new List<string>()
+            };
 
             //BadgeID
-            Console.WriteLine("Enter the new BadgeId you want to in the badge?\n");
-            newBadge.BadgeID = int.Parse(Console.ReadLine().ToLower());
+            Console.Write("Enter the name for the Badge you want: ");
+            newBadge.Name = Console.ReadLine();
 
-            //Floor Access
-            Console.WriteLine("List a door that it needs access to\n");
-            string typeOfAccess = Console.ReadLine().ToLower();
+            Console.Write("Enter the Badge ID you want: ");
+            newBadge.BadgeID = int.Parse(Console.ReadLine());
 
-            _badgeRepo.AddBadge(newBadge);
+            //List a door
+            Console.WriteLine("Enter the list of a door that it needs access to");
+            Console.WriteLine("Enter the following Door Access");
+            Console.WriteLine("A1, A4, A5, A7, B1, B2"); //enter a door you need to access to. then get the one string they entered and add that to dooraccess list. after you got the doors you want and add you want more
 
-            //description 
-            Console.WriteLine("Any other doors (y/n");
-            string FurtherAccess = Console.ReadLine().ToLower();
+            string door1 = Console.ReadLine().ToLower();
+            newBadge.DoorAccess.Add(door1);
 
-            if (FurtherAccess == "y")
+            _badgeRepo.AddBadge(newBadge.BadgeID, newBadge.DoorAccess);
+
+            Console.Write("Any other door? (y/n)");
+            string moreAccess = Console.ReadLine().ToLower();
+
+            if (moreAccess == "y")
             {
-                newBadge.//somethinghere = true;
+                Console.WriteLine("Enter the list of a door that it needs access to");
+                Console.WriteLine("Enter the following Door Access");
+                Console.WriteLine("A1, A4, A5, A7, B1, B2"); //enter a door you need to access to. then get the one string they entered and add that to dooraccess list. after you got the doors you want and add you want more
 
-                //re-running the adding access instead of going out and doing it all over agin.
-                Console.WriteLine("Door access has been set. Any more access to other doors you wish to update? (y/n) \n" +
-                    "");
-
-                string UpgradeAccess = Console.ReadLine().ToLower();
-
-                if (UpgradeAccess == "y")
-                {
-                    newBadge.UpgradeAccess = true;
-                }
+                string door2 = Console.ReadLine().ToLower();
+                _badgeRepo.AddDoorAccess(newBadge.BadgeID, door2);
             }
             else
             {
-                Console.WriteLine($"Has only acccess to {FurtherAccess}");
-                Console.ReadKey();
                 Console.Clear();
-                Menu();
+                RunBadge();
             }
         }
-        //Edit a badge. 
-        private void UpdateExistingBadge()
+
+        private void DisplayAllBadge()
         {
-            DisplayAllBadge(); //haven't made displayallbadge yet!
             Console.Clear();
-            Dictionary<int, string> = _badgeRepo.GetBadgeByID(); //haven't bad the function badgebyid yet. 
+            Dictionary<int, List<string>> _displayBadge = _badgeRepo.GetBadges();
 
-            //Ask for the BadgeId
-            Console.WriteLine("What is the badge number you would like to update? \n" +
-                "");
-            string badgeId = Console.ReadLine().ToLower();
-
-            bool keepRunning = true;
-            while (keepRunning)
+            if (_displayBadge.Count == 0) //you have to get all of the badges. 
             {
-                Console.WriteLine("What would like you to do?\n" +
-                    "1. Remove a door \n" +
-                    "2. Add a door. \n" +
-                    "3. Exit");
-
-                //Get the user's input 
-
-                string userinput = Console.ReadLine();
-
-                //Evaulate the user's input and act accordingly to their needs.
-                switch (userinput)
+                Console.Clear();
+                Console.WriteLine("Your claims list is empty! Press any key to go back to the menu.");
+                Console.ReadLine();
+                Console.Clear();
+                RunBadge();
+            }
+            else
+            {
+                foreach (KeyValuePair<int, List<string>> kvp in _displayBadge)
                 {
-                    case "1":
-                        //Remove a door. The door excit is inside the list and inside of the dictionary. Find the badge thatyou're about to remove and find the specific door to remove.
-                        break;
-                    case "2":
-                        //Add a door.
-                        break;
-                    case "3":
-                        //List all Badges/
-                        break;
-                    case "4":
-                        keepRunning = false;
-                        break;
-
-                    default:
-                        Console.WriteLine("The badge you entered does not exist in our database");
-                        break;
+                    Console.WriteLine($"Badge ID = {kvp.Key}");
+                    foreach(var doorAccess in kvp.Value)
+                    {
+                        Console.WriteLine($"Has access to {doorAccess}");
+                    }
                 }
-
-                Console.WriteLine("Please press any key to continue");
-                Console.ReadKey();
             }
         }
-        public void RemoveDoor()
+
+        private void UpdateTheBadge() //doesnt take my parameters
         {
-            Console.WriteLine("Enter your BadgeID you wish to remove the door");
+            DisplayAllBadge();
 
-            int input = int.Parse(Console.ReadLine());
+            Dictionary<int, List<String>> _badgerepo = new Dictionary<int, List<String>>();
+            //display all badge and pull the badge that you want. 
 
+            Console.Write("Enter the Badge you'd like to update");
+
+            // I am making a new badge instead of getting the badge by id. I am not using it. Take the id by the user and pass that in by id method. 
+
+            int originalBadgeID = int.Parse(Console.ReadLine());
+
+            KeyValuePair<int, List<string>> badge = _badgeRepo.GetBadgeByID(originalBadgeID); //pass it into this method
+
+            //we can access the list of strings which is our value "badge" dooraccess. through the dot notation can use the remove method that's already built in. 
+
+            //pass on the int to the reponsitory method.
+
+            //kvp doesnt have a lot of thing. You dont have a count for  kvp. 
+            //.KEY Aanother class. like badge. methods, properties, adn creating other instances those classes you can access what it's in them and that's what dot notation. Access the badge id, dooraccess, name due to dot notation.
+
+            if (badge.Value.Count == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("Your BadgeID is empty! Press any key to go back to the menu.");
+                Console.ReadLine();
+                Console.Clear();
+                BadgeMenu();
+            }
+            else
+            {
+                Console.Clear();
+                //display the next claim
+                Console.WriteLine($"{badge.Key}"); //through key value pair we can access the properties that are in it.
+
+                Console.Write("Would you like to give or remove access to a door (give/remove)?");
+                string option = Console.ReadLine().ToLower();
+
+                if (option == "remove")
+                {
+                    Console.Write("Which door would you like to remove?");
+                    string doorToRemove = Console.ReadLine();
+                    //badge.DoorAccess.Add(door1);
+                    _badgeRepo.RemoveAccess(badge.Key, doorToRemove);
+
+                    Console.Write("You have removed the access. Would you like to remove more access? (y/n)");
+                    string removeMore = Console.ReadLine();
+
+                    if (removeMore == "y")
+                    {
+                        Console.WriteLine("Which door would you like to remove?"); //enter a door you need to access to.
+                                                                   //then get the one string they entered and add that to dooraccess list.
+                                                                   //after you got the doors you want and add you want more
+                        string nextDoorToRemove = Console.ReadLine().ToLower();
+                        _badgeRepo.RemoveAccess(badge.Key, nextDoorToRemove);
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        RunBadge();
+                    }
+                }
+                else if (option == "give")
+                {
+                    Console.WriteLine("Which door would you like to give access?");
+                    string doorToAdd = Console.ReadLine();
+                    _badgeRepo.AddDoorAccess(badge.Key, doorToAdd);
+
+                    Console.Write($"You have given acccess to door {doorToAdd}. Would you want to add another access? (y/n)");
+                    string moreAccess = Console.ReadLine();
+
+                    if (moreAccess == "y")
+                    {
+                        Console.WriteLine("Which door would you like to give access?");
+                        string nextDoorToAdd = Console.ReadLine();
+                        _badgeRepo.AddDoorAccess(badge.Key, nextDoorToAdd);
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        RunBadge();
+                    }
+                }
+            }
         }
-
 
         private void SeedBadgeList()
         {
-            IDictionary<int, string> badgeList = new Dictionary<int, string>();
-            badgeList.Add(12345, "A7");
-            badgeList.Add(22345, "A1", "A4", "B1", "B2");
+            if (!_badgeListSeeded)
+            {
+                Badge access1 = new Badge(12345, 
+                    new List<string>() { "A7"}, "Austin");
 
+                Badge access2 = new Badge(22345,
+                    new List<string>() { "A1","B1","B2"}, "Nick");
+                
+                Badge access3 = new Badge(32345,
+                    new List<string>() { "A4","A5"}, "Erick");
 
+                _badgeRepo.AddBadge(access1.BadgeID, access1.DoorAccess);
+                _badgeRepo.AddBadge(access2.BadgeID, access2.DoorAccess);
+                _badgeRepo.AddBadge(access3.BadgeID, access3.DoorAccess);
+
+                _badgeListSeeded = true;
+            }
         }
     }
 }

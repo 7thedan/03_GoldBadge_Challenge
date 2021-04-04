@@ -1,30 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Badge_Repository
 {
-    //public enum BadgeAccess
-    //{
-    //    A = 1,
-    //    B = 2,
-    //}
+
 
     public class Badge
     {
         public int BadgeID { get; set; }
         public List<string> DoorAccess { get; set; }
-        public bool UpgradeAccess { get; set; } // use variables for the UI
-
+        public string Name { get; set; }
         public Badge() { }
 
-        public Badge(int badge_id, List<string> door_access, bool upgradeaccess)
+        public Badge(int badge_id, List<string> door_access, string name)
         {
             BadgeID = badge_id;
             DoorAccess = door_access;
-            UpgradeAccess = upgradeaccess;
+            Name = name;
         }
 
     }

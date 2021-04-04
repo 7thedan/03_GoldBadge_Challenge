@@ -1,0 +1,6 @@
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_Repository\obj\Debug\03RepositoryPattern_Badge_Repository.csprojAssemblyReference.cache
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_Repository\obj\Debug\03RepositoryPattern_Badge_Repository.csproj.CoreCompileInputs.cache
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_Repository\bin\Debug\Badge_Repository.dll
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_Repository\bin\Debug\Badge_Repository.pdb
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_Repository\obj\Debug\Badge_Repository.dll
+C:\Users\danny\source\repos\03_GoldBadge_Challenge\Badge_Repository\obj\Debug\Badge_Repository.pdb
